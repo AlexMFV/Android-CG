@@ -37,7 +37,6 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="380dp"
-                android:scaleType=
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
         </LinearLayout>
     </ScrollView>

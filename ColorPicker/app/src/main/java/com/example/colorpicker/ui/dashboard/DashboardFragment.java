@@ -31,7 +31,6 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        dashboardViewModel.fillList(R.drawable.);
         return root;
     }
 }
