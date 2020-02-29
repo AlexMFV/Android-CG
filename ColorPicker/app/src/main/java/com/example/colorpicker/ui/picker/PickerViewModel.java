@@ -18,6 +18,7 @@ public class PickerViewModel extends ViewModel {
 
     public void UpdateColorValue(TextView hex, TextView argb, ColorEnvelope color){
         hex.setText(("Hex Value: #" + color.getHexCode().substring(2)));
-        argb.setText(("Argb Value: (" + color.getArgb() + ")"));
+        int[] argbValues = color.getArgb();
+        argb.setText(("RGB Value: (" + argbValues[1] + "," + argbValues[2] + "," + argbValues[3] + ")"));
     }
 }
