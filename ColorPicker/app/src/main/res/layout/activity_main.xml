@@ -40,7 +40,9 @@
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
         android:text="Display"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="360dp" />
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
