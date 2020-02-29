@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="Settings">Settings</string>
+    <string name="Logout">Logout</string>
+    <string name="LogoutText">Logout of account: </string>
+    <string name="PasswordChange">Change password: </string>
+    <string name="ChangeButton">Change</string>
+    <string name="MainPage">Main Page</string>
+    <string name="ColourGenerator">Colours</string>
+    <string name="ImageUpload">Upload</string>
+    <string name="SettingsBottom">Settings</string>
 </resources>
