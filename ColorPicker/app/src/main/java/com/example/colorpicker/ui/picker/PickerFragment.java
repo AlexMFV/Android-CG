@@ -15,6 +15,7 @@ import com.example.colorpicker.R;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerView;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
+import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
 
 public class PickerFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class PickerFragment extends Fragment {
     private Button colorBox;
     private TextView hexValue;
     private TextView argbValue;
+    private BrightnessSlideBar sliderBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class PickerFragment extends Fragment {
         colorBox = root.findViewById(R.id.btnSelectedColor);
         hexValue = root.findViewById(R.id.txtHexValue);
         argbValue = root.findViewById(R.id.txtArgbValue);
+        sliderBar = root.findViewById(R.id.BrightnessSlideBar);
+
+        colorPicker.attachBrightnessSlider(sliderBar);
 
         //Event for when a new color is picked
         colorPicker.setColorListener(new ColorEnvelopeListener() {
