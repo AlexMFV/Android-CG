@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -49,12 +48,12 @@
 
     <TextView
         android:id="@+id/txtHexValue"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="19dp"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="176dp"
-        android:text="Hex Value"
+        android:text="@string/text_hexValue"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnSelectedColor"
@@ -62,12 +61,12 @@
 
     <TextView
         android:id="@+id/txtArgbValue"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="19dp"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="176dp"
-        android:text="Argb Value"
+        android:text="@string/text_argbValue"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnSelectedColor"
@@ -80,7 +79,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="32dp"
-        android:text="Number of Colours in Palette:"
+        android:text="@string/text_numberColours"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +107,7 @@
             android:background="@drawable/custom_radio_button"
             android:button="@android:color/transparent"
             android:checked="true"
-            android:text="2"
+            android:text="@string/radio_2Colours"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -120,7 +119,7 @@
             android:layout_weight="1"
             android:background="@drawable/custom_radio_button"
             android:button="@android:color/transparent"
-            android:text="3"
+            android:text="@string/radio_3Colours"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -132,10 +131,25 @@
             android:layout_weight="1"
             android:background="@drawable/custom_radio_button"
             android:button="@android:color/transparent"
-            android:text="4"
+            android:text="@string/radio_4Colours"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/btnGenerate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/text_generatePalette"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.050000012" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

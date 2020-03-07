@@ -1,6 +1,5 @@
 package com.example.colorpicker.ui.picker;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +24,7 @@ public class PickerFragment extends Fragment {
     private TextView hexValue;
     private TextView argbValue;
     private BrightnessSlideBar sliderBar;
+    private Button generate;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class PickerFragment extends Fragment {
         hexValue = root.findViewById(R.id.txtHexValue);
         argbValue = root.findViewById(R.id.txtArgbValue);
         sliderBar = root.findViewById(R.id.BrightnessSlideBar);
+        generate = root.findViewById(R.id.btnGenerate);
 
         colorPicker.attachBrightnessSlider(sliderBar);
 
@@ -53,6 +54,16 @@ public class PickerFragment extends Fragment {
             public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
                 pickerViewModel.UpdateColorBox(colorBox, envelope);
                 pickerViewModel.UpdateColorValue(hexValue, argbValue, envelope);
+            }
+        });
+
+        /*Event for when the Generate Palette button is pressed*/
+        generate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                /*Generate Send the Selected Colour and the number of colours in the palette to
+                * The colour generator page*/
             }
         });
     }

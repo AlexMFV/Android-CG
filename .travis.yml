@@ -20,9 +20,9 @@ env:
    #- API=19 # Kernel/emulator mismatch failure probably fixible with -engine classic
    # API 20 was Android Wear only
    #- API=21 ABI=x86_64
-   - API=22 ABI=x86_64
+   # - API=22 ABI=x86_64
    #- API=23 ABI=x86_64
-   #- API=24 ABI=x86_64
+   - API=24 ABI=x86_64
    #- API=25 ABI=x86_64 
    #- API=26 ABI=x86_64 # Fails with unrecognized tests? orchestrator change or something?
    - API=27 ABI=x86_64
