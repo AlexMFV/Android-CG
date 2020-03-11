@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+//import com.example.colorpicker.ui.login.SignInActivity;
+
 public class HomePage extends AppCompatActivity {
 
     @Override
@@ -15,7 +17,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void onClickHandler(View view){
-        Intent myintent=new Intent(HomePage.this, MainActivity.class);
+        Intent myintent=new Intent(HomePage.this, SignIn.class);
         startActivity(myintent);
     }
 }
