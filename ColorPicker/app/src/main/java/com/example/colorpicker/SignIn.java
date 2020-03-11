@@ -27,6 +27,8 @@ public class SignIn extends AppCompatActivity {
         info = (TextView)findViewById(R.id.tvInfo);
         signin = (Button)findViewById(R.id.btnSignin);
 
+        info.setText("No of attempts remaining: 5");
+
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,9 +45,10 @@ public class SignIn extends AppCompatActivity {
         } else{
             counter--; //Disables SignIn button after 5 attempts
 
+            info.setText("No of attempts remaining: " + String.valueOf(counter));
+
             if(counter == 0){
 
-                info.setText("No of attempts remaining: " + String.valueOf(counter));
                 signin.setEnabled(false);
             }
         }
