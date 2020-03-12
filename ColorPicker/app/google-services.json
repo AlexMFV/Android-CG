@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "594490039426",
+    "firebase_url": "https://androidcg-e5468.firebaseio.com",
+    "project_id": "androidcg-e5468",
+    "storage_bucket": "androidcg-e5468.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594490039426:android:0467a6bfce20a1dbe1289b",
+        "android_client_info": {
+          "package_name": "com.coursework.colorpicker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594490039426-ffnrnhq5pqfekks67frb5vpabeutaqad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMKAOh6HA2LqVAGk1wznGER9Z7VF8R7xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594490039426-ffnrnhq5pqfekks67frb5vpabeutaqad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
