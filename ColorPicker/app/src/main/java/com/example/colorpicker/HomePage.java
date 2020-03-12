@@ -6,14 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-//import com.example.colorpicker.ui.login.SignInActivity;
-
 public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+    }
+
+    public void onClickStartHandler(View view){
+        startActivity(new Intent(HomePage.this, MainActivity.class)); //Open the start page as a guest NOT IMPLEMENTED YET
     }
 
     public void onClickHandler(View view){

@@ -10,7 +10,7 @@
         android:id="@+id/startButton"
         android:layout_width="158dp"
         android:layout_height="75dp"
-        android:onClick="onClickHandler"
+        android:onClick="onClickStartHandler"
         android:text="Start"
         android:textAllCaps="false"
         android:textSize="30sp"
