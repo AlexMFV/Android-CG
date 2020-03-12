@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-//import com.example.colorpicker.ui.login.SignInActivity;
-
 public class HomePage extends AppCompatActivity {
 
     @Override
@@ -16,8 +14,12 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
     }
 
+    public void onClickStartHandler(View view){
+        startActivity(new Intent(HomePage.this, MainActivity.class)); //Open the start page as a guest NOT IMPLEMENTED YET
+    }
+
     public void onClickHandler(View view){
-        Intent myintent=new Intent(HomePage.this, SignIn.class);
-        startActivity(myintent);
+        Intent myIntent = new Intent(HomePage.this, SignIn.class);
+        startActivity(myIntent);
     }
 }
