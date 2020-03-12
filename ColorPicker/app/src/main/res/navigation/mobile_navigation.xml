@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.colorpicker.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_colorPicker"
+        android:name="com.example.colorpicker.ui.picker.PickerFragment"
+        android:label="@string/title_colorPicker"
+        tools:layout="@layout/fragment_picker" />
 </navigation>

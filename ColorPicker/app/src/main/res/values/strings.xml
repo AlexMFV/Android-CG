@@ -1,6 +1,14 @@
 <resources>
-    <string name="app_name">ColorPicker</string>
+    <string name="app_name">Color Picker</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_colorPicker">Color Picker</string>
+
+    <string name="text_hexValue">Hex Value</string>
+    <string name="text_argbValue">Argb Value</string>
+    <string name="text_numberColours">Number of Colours in Palette:</string>
+    <string name="radio_2Colours">2</string>
+    <string name="radio_3Colours">3</string>
+    <string name="radio_4Colours">4</string>
+    <string name="text_generatePalette">Generate Palette</string>
 </resources>
