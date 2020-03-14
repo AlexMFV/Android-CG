@@ -2,9 +2,9 @@
     <string name="app_name">Color Picker</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-  
+
     <!-- Strings Benedita-->
-    <string name="title_notifications">Notifications</string>  
+    <string name="title_notifications">Notifications</string>
     <string name="title_activity_signin">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -15,7 +15,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_sign_in">Sign in</string>
-  
+
   <!-- Strings Adam-->
     <string name="Settings">Settings</string>
     <string name="Logout">Logout</string>
@@ -26,7 +26,13 @@
     <string name="ColourGenerator">Colours</string>
     <string name="ImageUpload">Upload</string>
     <string name="SettingsBottom">Settings</string>
-  
+    <string name="DarkMode">Dark Mode</string>
+    <string name="Enabledisable">Enable/Disable</string>
+    <string name="SavedColourScheme">Saved Schemes</string>
+    <string name="ViewShemes">View</string>
+    <string name="backtomenu">Back to Menu</string>
+    <string name="title_settings_page">Settings</string>
+
     <!-- Strings Alex -->
     <string name="title_colorPicker">Color Picker</string>
     <string name="text_hexValue">Hex Value</string>
