@@ -4,7 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
   
     <!-- Strings Benedita-->
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Notifications</string>  
     <string name="title_activity_signin">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -15,6 +15,17 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_sign_in">Sign in</string>
+  
+  <!-- Strings Adam-->
+    <string name="Settings">Settings</string>
+    <string name="Logout">Logout</string>
+    <string name="LogoutText">Logout of account: </string>
+    <string name="PasswordChange">Change password: </string>
+    <string name="ChangeButton">Change</string>
+    <string name="MainPage">Main Page</string>
+    <string name="ColourGenerator">Colours</string>
+    <string name="ImageUpload">Upload</string>
+    <string name="SettingsBottom">Settings</string>
   
     <!-- Strings Alex -->
     <string name="title_colorPicker">Color Picker</string>
