@@ -26,6 +26,12 @@
     <string name="ColourGenerator">Colours</string>
     <string name="ImageUpload">Upload</string>
     <string name="SettingsBottom">Settings</string>
+    <string name="DarkMode">Dark Mode</string>
+    <string name="Enabledisable">Enable/Disable</string>
+    <string name="SavedColourScheme">Saved Schemes</string>
+    <string name="ViewShemes">View</string>
+    <string name="backtomenu">Back to Menu</string>
+    <string name="title_settings_page">Settings</string>
 
     <!-- Strings Alex -->
     <string name="title_colorPicker">Color Picker</string>
