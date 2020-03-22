@@ -18,10 +18,13 @@ public class HomePage extends AppCompatActivity {
         startActivity(new Intent(HomePage.this, MainActivity.class)); //Open the start page as a guest NOT IMPLEMENTED YET
     }
 
+    public void onClickRegisterHandler(View view){
+        Intent registerIntent = new Intent(HomePage.this, Registration.class);
+        startActivity(registerIntent);
+    }
+
     public void onClickHandler(View view){
         Intent signInIntent =new Intent(HomePage.this, SignIn.class);
         startActivity(signInIntent);
-
-        Intent intent = new Intent(HomePage.this, Registration.class);
     }
 }
