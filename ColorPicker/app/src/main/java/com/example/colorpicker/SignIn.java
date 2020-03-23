@@ -1,5 +1,6 @@
 package com.example.colorpicker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -16,11 +23,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignIn extends AppCompatActivity {
 
-    private EditText username;
+    private EditText email;
     private EditText password;
     private TextView info;
     private Button signin;
-    private int counter = 5;
+    private Button btnReset;
+    private int counter = 3;
+    private FirebaseAuth fbAuth;
 
     //Firebase Variables
     private FirebaseAuth  fbAuth;
@@ -36,31 +45,86 @@ public class SignIn extends AppCompatActivity {
         password = (EditText)findViewById(R.id.userPassword);
         info = (TextView)findViewById(R.id.tvInfo);
         signin = (Button)findViewById(R.id.btnSignin);
+        btnReset = findViewById(R.id.btnResetPwd);
 
-        info.setText("No of attempts remaining: 5");
+        info.setText("Attempts remaining: " + counter);
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate(username.getText().toString(), password.getText().toString());
+                validate(email.getText().toString(), password.getText().toString());
             }
         });
 
+        btnReset.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(isValidEmail(email.getText().toString()))
+                    sendResetEmail(email.getText().toString());
+            }
+        });
     }
 
-    private void validate (String userName, String userPassword){
-        if((userName == "Admin") && (userPassword == "1234")){
-            Intent intent = new Intent(SignIn.this, MainActivity.class);
-            startActivity(intent);
-        } else{
-            counter--; //Disables SignIn button after 5 attempts
+    private void validate (String usr, String pwd){
+        if(isValidEmail(usr) && isValidPwd(pwd))
+            loginUser(usr, pwd);
+        else
+            checkReset();
+    }
 
-            info.setText("No of attempts remaining: " + String.valueOf(counter));
+    private boolean isValidEmail(String email){
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
 
-            if(counter == 0){
+    private boolean isValidPwd(String pwd){
+        return pwd.length() >= 6;
+    }
 
-                signin.setEnabled(false);
+    private void loginUser(String usr, String pwd){
+        signin.setEnabled(false);
+        fbAuth.signInWithEmailAndPassword(usr, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!task.isSuccessful()){
+                    checkReset();
+                    signin.setEnabled(true);
+                    Toast.makeText(SignIn.this, "Error logging in, please try again!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Intent mainPage = new Intent(SignIn.this, MainActivity.class); //Redirect the user to the Registered MainPage
+                    startActivity(mainPage);
+                    finish();
+                }
             }
+        });
+    }
+
+    private void checkReset(){
+        if(counter > 0){
+            counter--; //Disables SignIn button after x attempts
+            info.setText(" Attempts remaining:" + counter);
         }
+
+        if(counter == 0){
+            btnReset.setEnabled(true);
+            btnReset.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void sendResetEmail(String usr){
+        btnReset.setEnabled(false);
+        fbAuth.sendPasswordResetEmail(usr).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(!task.isSuccessful()) {
+                    Toast.makeText(SignIn.this, "Please use a valid email!", Toast.LENGTH_LONG).show();
+                    btnReset.setEnabled(true);
+                }
+                else {
+                    Toast.makeText(SignIn.this, "Password reset email has been sent!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }
