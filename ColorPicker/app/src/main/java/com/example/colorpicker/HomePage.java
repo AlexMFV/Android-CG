@@ -19,6 +19,11 @@ public class HomePage extends AppCompatActivity {
         finish();
     }
 
+    public void onClickRegisterHandler(View view){
+        Intent registerIntent = new Intent(HomePage.this, Registration.class);
+        startActivity(registerIntent);
+    }
+
     public void onClickHandler(View view){
         Intent myIntent = new Intent(HomePage.this, SignIn.class);
         startActivity(myIntent);

@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignIn extends AppCompatActivity {
 
     private EditText email;
@@ -26,16 +31,20 @@ public class SignIn extends AppCompatActivity {
     private int counter = 3;
     private FirebaseAuth fbAuth;
 
+    //Firebase Variables
+    private FirebaseAuth  fbAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        fbAuth = FirebaseAuth.getInstance(); //Establishes a connection to FireBase
-        email = findViewById(R.id.userName); // assigns the variable to the id in the XML layout
-        password = findViewById(R.id.userPassword);
-        info = findViewById(R.id.tvInfo);
-        signin = findViewById(R.id.btnSignin);
+        fbAuth = FirebaseAuth.getInstance(); // Make connection to Firebase
+        username = (EditText)findViewById(R.id.userName); // assigns the variable to the id in the XML layout
+        password = (EditText)findViewById(R.id.userPassword);
+        info = (TextView)findViewById(R.id.tvInfo);
+        signin = (Button)findViewById(R.id.btnSignin);
         btnReset = findViewById(R.id.btnResetPwd);
 
         info.setText("Attempts remaining: " + counter);
