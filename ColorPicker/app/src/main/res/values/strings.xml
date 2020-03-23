@@ -1,6 +1,51 @@
 <resources>
-    <string name="app_name">ColorPicker</string>
+    <string name="app_name">Color Picker</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <!-- Strings Benedita-->
+    <string name="title_notifications">Notifications</string>  
+    <string name="title_activity_signin">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_sign_in">Sign in</string>
+
+  <!-- Strings Adam-->
+    <string name="Settings">Settings</string>
+    <string name="Logout">Logout</string>
+    <string name="LogoutText">Logout of account: </string>
+    <string name="PasswordChange">Change password: </string>
+    <string name="ChangeButton">Change</string>
+    <string name="MainPage">Main Page</string>
+    <string name="ColourGenerator">Colours</string>
+    <string name="ImageUpload">Upload</string>
+    <string name="SettingsBottom">Settings</string>
+    <string name="DarkMode">Dark Mode</string>
+    <string name="Enabledisable">Enable/Disable</string>
+    <string name="SavedColourScheme">Saved Schemes</string>
+    <string name="ViewShemes">View</string>
+    <string name="backtomenu">Back to Menu</string>
+    <string name="title_settings_page">Settings</string>
+
+    <!-- Strings Rosie -->
+    <string name = "title_imageupload">Image Upload</string>
+    <string name = "text_explanation">Upload your image by pressing either of the buttons, your image will appear below.</string>
+    <string name = "text_button_upload">Select Image</string>
+    <string name = "content_desc">Image to be uploaded</string>
+
+    <!-- Strings Alex -->
+    <string name="title_colorPicker">Color Picker</string>
+    <string name="text_hexValue">Hex Value</string>
+    <string name="text_argbValue">Argb Value</string>
+    <string name="text_numberColours">Number of Colours in Palette:</string>
+    <string name="radio_2Colours">2</string>
+    <string name="radio_3Colours">3</string>
+    <string name="radio_4Colours">4</string>
+    <string name="text_generatePalette">Generate Palette</string>
 </resources>
