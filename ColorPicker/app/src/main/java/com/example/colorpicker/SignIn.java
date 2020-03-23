@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignIn extends AppCompatActivity {
 
     private EditText username;
@@ -17,11 +22,16 @@ public class SignIn extends AppCompatActivity {
     private Button signin;
     private int counter = 5;
 
+    //Firebase Variables
+    private FirebaseAuth  fbAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        fbAuth = FirebaseAuth.getInstance(); // Make connection to Firebase
         username = (EditText)findViewById(R.id.userName); // assigns the variable to the id in the XML layout
         password = (EditText)findViewById(R.id.userPassword);
         info = (TextView)findViewById(R.id.tvInfo);
