@@ -25,7 +25,7 @@
         android:id="@+id/signupButton"
         android:layout_width="158dp"
         android:layout_height="75dp"
-        android:onClick="onClickRegisterHandler"
+        android:onClick="onClickRegHandler"
         android:text="Register"
         android:textAllCaps="false"
         android:textSize="30sp"
