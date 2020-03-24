@@ -29,10 +29,9 @@ public class SignIn extends AppCompatActivity {
     private Button signin;
     private Button btnReset;
     private int counter = 3;
-    private FirebaseAuth fbAuth;
 
-    //Firebase Variables
-    private FirebaseAuth  fbAuth;
+    //FireBase Variables
+    private FirebaseAuth fbAuth;
 
 
     @Override
@@ -40,11 +39,11 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        fbAuth = FirebaseAuth.getInstance(); // Make connection to Firebase
-        username = (EditText)findViewById(R.id.userName); // assigns the variable to the id in the XML layout
-        password = (EditText)findViewById(R.id.userPassword);
-        info = (TextView)findViewById(R.id.tvInfo);
-        signin = (Button)findViewById(R.id.btnSignin);
+        fbAuth = FirebaseAuth.getInstance(); // Make connection to FireBase
+        email = findViewById(R.id.userName); // assigns the variable to the id in the XML layout
+        password = findViewById(R.id.userPassword);
+        info = findViewById(R.id.tvInfo);
+        signin = findViewById(R.id.btnSignin);
         btnReset = findViewById(R.id.btnResetPwd);
 
         info.setText("Attempts remaining: " + counter);

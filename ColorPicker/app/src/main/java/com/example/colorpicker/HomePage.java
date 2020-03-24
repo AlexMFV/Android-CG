@@ -2,31 +2,34 @@ package com.example.colorpicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.security.Signature;
+
 public class HomePage extends AppCompatActivity {
+
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        mContext = getApplicationContext();
     }
 
     public void onClickStartHandler(View view){
-        startActivity(new Intent(HomePage.this, MainActivity.class)); //Open the start page as a guest NOT IMPLEMENTED YET
-        finish();
+        startActivity(new Intent(mContext, MainActivity.class)); //Open the start page as a guest NOT IMPLEMENTED YET
     }
 
-    public void onClickRegisterHandler(View view){
-        Intent registerIntent = new Intent(HomePage.this, Registration.class);
-        startActivity(registerIntent);
+    public void onClickRegHandler(View view){
+        startActivity(new Intent(mContext, SignUp.class));
     }
 
     public void onClickHandler(View view){
-        Intent myIntent = new Intent(HomePage.this, SignIn.class);
-        startActivity(myIntent);
-        finish();
+        startActivity(new Intent(mContext, SignIn.class));
     }
 }
