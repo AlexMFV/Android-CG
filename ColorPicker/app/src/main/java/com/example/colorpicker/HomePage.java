@@ -22,7 +22,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void onClickStartHandler(View view){
-        startActivity(new Intent(mContext, MainActivity.class)); //Open the start page as a guest NOT IMPLEMENTED YET
+        startActivity(new Intent(mContext, MainActivityGuest.class));
     }
 
     public void onClickRegHandler(View view){

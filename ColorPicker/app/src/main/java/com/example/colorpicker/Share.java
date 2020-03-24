@@ -15,7 +15,7 @@ public class Share extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.share);
+        setContentView(R.layout.fragment_share);
 
 
         btnShare = (Button) findViewById(R.id.Bshare);
