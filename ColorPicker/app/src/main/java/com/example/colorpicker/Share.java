@@ -62,6 +62,8 @@ public class Share extends Activity {
                 startActivity(Intent.createChooser(shareIntent, "Share Via"));
             }
         });
+
+        UpdateValues(0);
     }
 
     //Creates the Grid for the colours to be displayed
@@ -88,17 +90,14 @@ public class Share extends Activity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UpdateValues(v.getId());
+                    UpdateValues(GetButtonID(v.getId()));
                 }
             });
             layout.addView(btn);
         }
     }
 
-    public void UpdateValues(int id){
-        Button btn = findViewById(id);
-        int idx = Integer.valueOf(btn.getTag().toString());
-
+    public void UpdateValues(int idx){
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setCornerRadius(10);
@@ -109,5 +108,10 @@ public class Share extends Activity {
         txtHex.setText("Hex Value: " + scheme.Get(idx).StringHex());
         txtCMYK.setText("CMYK Value: " + scheme.Get(idx).StringCMYK());
         txtRGBA.setText("RGB Value: " + scheme.Get(idx).StringRGBA());
+    }
+
+    public int GetButtonID(int id){
+        Button btn = findViewById(id);
+        return Integer.valueOf(btn.getTag().toString());
     }
 }

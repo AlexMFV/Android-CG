@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ public class PickerFragment extends Fragment {
     private BrightnessSlideBar sliderBar;
     private Button generate;
     private int palette_number = 2;
+    private RadioGroup rGroup;
 
     Colour newColour;
 
@@ -47,7 +50,7 @@ public class PickerFragment extends Fragment {
     }
 
     //Set all the necessary Event Handlers for the ColorPicker
-    public void SetEventListeners(View root){
+    public void SetEventListeners(final View root){
         //Get the reference to the color picker and the color box
         colorPicker = root.findViewById(R.id.colorPickerView);
         colorBox = root.findViewById(R.id.btnSelectedColor);
@@ -55,6 +58,7 @@ public class PickerFragment extends Fragment {
         argbValue = root.findViewById(R.id.txtArgbValue);
         sliderBar = root.findViewById(R.id.BrightnessSlideBar);
         generate = root.findViewById(R.id.btnGenerate);
+        rGroup = root.findViewById(R.id.radioGroup);
 
         colorPicker.attachBrightnessSlider(sliderBar);
 
@@ -76,10 +80,18 @@ public class PickerFragment extends Fragment {
                 /*Generate Send the Selected Colour and the number of colours in the palette to
                 * The colour generator page*/
 
-                ColourScheme scheme = Algorithms.Random(newColour, 4);
+                ColourScheme scheme = Algorithms.Random(newColour, palette_number);
                 Intent intent = new Intent(getContext(), Share.class);
                 intent.putExtra("Generated_Scheme", new Gson().toJson(scheme));
                 startActivity(intent);
+            }
+        });
+
+        rGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton btn = root.findViewById(checkedId);
+                palette_number = Integer.valueOf(btn.getText().toString());
             }
         });
     }
