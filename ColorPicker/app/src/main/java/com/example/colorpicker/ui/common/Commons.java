@@ -12,8 +12,8 @@ public final class Commons {
     public static final float PLUM_B = 0.114f;
 
     /* MAX-MIN Values */
-    public static final int RGB_MAX = 255;
-    public static final int RGB_MIN = 0;
+    static final int RGB_MAX = 255;
+    static final int RGB_MIN = 0;
 
     /* Luminance Ratio (L1 + 0.05) / (L2 + 0.05) ,
     goes from 1 (no contrast) all the way to21

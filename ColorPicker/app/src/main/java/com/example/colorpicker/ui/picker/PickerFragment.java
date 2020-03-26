@@ -28,16 +28,12 @@ import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
 public class PickerFragment extends Fragment {
 
     private PickerViewModel pickerViewModel;
-    private ColorPickerView colorPicker;
     private Button colorBox;
     private TextView hexValue;
     private TextView argbValue;
-    private BrightnessSlideBar sliderBar;
-    private Button generate;
     private int palette_number = 2;
-    private RadioGroup rGroup;
 
-    Colour newColour;
+    private Colour newColour;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -50,15 +46,15 @@ public class PickerFragment extends Fragment {
     }
 
     //Set all the necessary Event Handlers for the ColorPicker
-    public void SetEventListeners(final View root){
+    private void SetEventListeners(final View root){
         //Get the reference to the color picker and the color box
-        colorPicker = root.findViewById(R.id.colorPickerView);
+        ColorPickerView colorPicker = root.findViewById(R.id.colorPickerView);
         colorBox = root.findViewById(R.id.btnSelectedColor);
         hexValue = root.findViewById(R.id.txtHexValue);
         argbValue = root.findViewById(R.id.txtArgbValue);
-        sliderBar = root.findViewById(R.id.BrightnessSlideBar);
-        generate = root.findViewById(R.id.btnGenerate);
-        rGroup = root.findViewById(R.id.radioGroup);
+        BrightnessSlideBar sliderBar = root.findViewById(R.id.BrightnessSlideBar);
+        Button generate = root.findViewById(R.id.btnGenerate);
+        RadioGroup rGroup = root.findViewById(R.id.radioGroup);
 
         colorPicker.attachBrightnessSlider(sliderBar);
 

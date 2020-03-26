@@ -44,7 +44,7 @@ public class Algorithms {
     }
 
     /* Generates a random colour */
-    static Colour GenerateRandom(){
+    private static Colour GenerateRandom(){
         Random rand = new Random();
         int r = rand.nextInt((RGB_MAX - RGB_MIN) + 1) + RGB_MIN;
         int g = rand.nextInt((RGB_MAX - RGB_MIN) + 1) + RGB_MIN;

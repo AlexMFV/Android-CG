@@ -4,9 +4,9 @@ import java.text.DecimalFormat;
 
 public class Colour {
     //String colour_name;
-    String hex;
-    double[] cmyk;
-    int[] rgba;
+    private String hex;
+    private double[] cmyk;
+    private int[] rgba;
     //int[] hsl; /* Mode: º-%-% (degree, percentage, percentage)*/ /* DEPRECATED */
     //double luminance;
 
@@ -19,11 +19,11 @@ public class Colour {
 
     //public void Luminance(){ }
 
-    public String ConvertToHex(int r, int g, int b){
+    private String ConvertToHex(int r, int g, int b){
         return "#" + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
     }
 
-    public double[] ConvertToCMYK(int r, int g, int b){
+    private double[] ConvertToCMYK(int r, int g, int b){
         double _r = r/255.0;
         double _g = g/255.0;
         double _b = b/255.0;

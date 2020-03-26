@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
 
+import com.example.colorpicker.ui.colour.Colour;
 import com.example.colorpicker.ui.colour.ColourScheme;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,6 +35,7 @@ public class Share extends Activity {
     TextView txtHex;
     TextView txtRGBA;
     TextView txtCMYK;
+    //Button changeSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,14 @@ public class Share extends Activity {
 
         UpdateValues(0);
     }
+
+    //NOT YET IMPLEMENTED
+    /*public void UpdateColorOnScheme(Colour newColour){
+        Button btnSelected = findViewById(R.id.btnSelected);
+        int colourIdx = Integer.valueOf(btnSelected.getTag().toString());
+        scheme.Change(newColour, colourIdx);
+        UpdateValues(0);
+    }*/
 
     //Creates the Grid for the colours to be displayed
     public void BuildColourScheme(){
@@ -104,10 +114,11 @@ public class Share extends Activity {
         drawable.setStroke(5, Color.BLACK);
         drawable.setColor(Color.rgb(scheme.Get(idx).RGBA()[0], scheme.Get(idx).RGBA()[1], scheme.Get(idx).RGBA()[2]));
         btnSelected.setBackground(drawable);
+        btnSelected.setTag(idx);
 
-        txtHex.setText("Hex Value: " + scheme.Get(idx).StringHex());
-        txtCMYK.setText("CMYK Value: " + scheme.Get(idx).StringCMYK());
-        txtRGBA.setText("RGB Value: " + scheme.Get(idx).StringRGBA());
+        txtHex.setText(String.format("%s %s", getString(R.string.text_hexValue), scheme.Get(idx).StringHex()));
+        txtCMYK.setText(String.format("%s %s", getString(R.string.text_CmykValue), scheme.Get(idx).StringCMYK()));
+        txtRGBA.setText(String.format("%s %s", getString(R.string.text_RgbValue), scheme.Get(idx).StringRGBA()));
     }
 
     public int GetButtonID(int id){

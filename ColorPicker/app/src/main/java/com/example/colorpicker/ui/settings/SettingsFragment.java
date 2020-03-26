@@ -16,14 +16,10 @@ import com.example.colorpicker.R;
 
 public class SettingsFragment extends Fragment {
 
-    private SettingsViewModel settingsFragment;
-    private Button btnLogout;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        settingsFragment = ViewModelProviders.of(this).get(SettingsViewModel.class);
         View root = inflater.inflate(R.layout.settings_page, container, false);
-        btnLogout = root.findViewById(R.id.LogoutButton);
+        Button btnLogout = root.findViewById(R.id.LogoutButton);
         btnLogout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -34,7 +30,7 @@ public class SettingsFragment extends Fragment {
         return root;
     }
 
-    public void redirectMenu(){
+    private void redirectMenu(){
         Intent myIntent = new Intent(SettingsFragment.this.getActivity(), HomePage.class);
         startActivity(myIntent);
         SettingsFragment.this.getActivity().finish();
