@@ -31,8 +31,7 @@ public class SignIn extends AppCompatActivity {
     private int counter = 3;
     private FirebaseAuth fbAuth;
 
-    //Firebase Variables
-    private FirebaseAuth  fbAuth;
+   
 
 
     @Override
