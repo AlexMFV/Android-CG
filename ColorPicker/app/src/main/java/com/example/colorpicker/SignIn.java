@@ -41,7 +41,7 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         fbAuth = FirebaseAuth.getInstance(); // Make connection to Firebase
-        username = (EditText)findViewById(R.id.userName); // assigns the variable to the id in the XML layout
+        email = (EditText)findViewById(R.id.userName); // assigns the variable to the id in the XML layout
         password = (EditText)findViewById(R.id.userPassword);
         info = (TextView)findViewById(R.id.tvInfo);
         signin = (Button)findViewById(R.id.btnSignin);
