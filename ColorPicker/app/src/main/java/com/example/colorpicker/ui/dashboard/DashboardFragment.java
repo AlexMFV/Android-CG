@@ -36,13 +36,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-    ImageView viewImage;
-    Button button;
+    private ImageView viewImage;
+    private Button button;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();

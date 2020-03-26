@@ -22,9 +22,8 @@ public class SignUp extends AppCompatActivity {
     private EditText userName;
     private EditText userPassword;
     private EditText passwordVerif;
-    private Button btnRegister;
-	
-	@Override
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
@@ -33,7 +32,7 @@ public class SignUp extends AppCompatActivity {
         userName = findViewById(R.id.userName2);
         userPassword= findViewById(R.id.userPassword2);
         passwordVerif = findViewById(R.id.userPassword3);
-        btnRegister = findViewById(R.id.btnRegister);
+        Button btnRegister = findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

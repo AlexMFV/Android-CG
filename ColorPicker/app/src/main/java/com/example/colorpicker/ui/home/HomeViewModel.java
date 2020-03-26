@@ -15,47 +15,42 @@ import java.util.Calendar;
 
 public class HomeViewModel extends ViewModel {
 
-    private TextView cotd_description;
-    private ImageView cotd_image;
+    public HomeViewModel() { }
 
-    public HomeViewModel() {
-
-    }
-
-    public void loadColourOfTheDay(View root) {
-        cotd_description = root.findViewById(R.id.text_colour_description);
-        cotd_image = root.findViewById(R.id.image_cotd);
+    void loadColourOfTheDay(View root) {
+        TextView cotd_description = root.findViewById(R.id.text_colour_description);
+        ImageView cotd_image = root.findViewById(R.id.image_cotd);
 
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_WEEK);
 
         switch (day) {
             case Calendar.SUNDAY:
-                cotd_description.setText("Today's colour of the day is Orange. This colour is known to represent an adventurous nature and joy or perhaps a time of change.");
+                cotd_description.setText(R.string.text_Sunday);
                 cotd_image.setColorFilter(Color.rgb(240, 150, 35));
                 break;
             case Calendar.MONDAY:
-                cotd_description.setText("Today's colour of the day is White. This colour is known to represent purity, innocence and cleanliness.");
+                cotd_description.setText(R.string.text_Monday);
                 cotd_image.setColorFilter(Color.rgb(240, 230, 220));
                 break;
             case Calendar.TUESDAY:
-                cotd_description.setText("Today's colour of the day is Red. This colour is known to represent energy, strength, power and desire.");
+                cotd_description.setText(R.string.text_Tuesday);
                 cotd_image.setColorFilter(Color.rgb(200, 0, 0));
                 break;
             case Calendar.WEDNESDAY:
-                cotd_description.setText("Today's colour of the day is Green. This colour is known to represent wealth, renewal and to be the colour of nature.");
+                cotd_description.setText(R.string.text_Wednesday);
                 cotd_image.setColorFilter(Color.rgb(90, 230, 50));
                 break;
             case Calendar.THURSDAY:
-                cotd_description.setText("Today's colour is Light Yellow. This colour is known to represent insight, enlightenment and happiness.");
+                cotd_description.setText(R.string.text_Thursday);
                 cotd_image.setColorFilter(Color.rgb(230, 240, 60));
                 break;
             case Calendar.FRIDAY:
-                cotd_description.setText("Today's colour is Blue. This colour is known to represent tranquility, calmness and stability, often associated with the sky and sea.");
+                cotd_description.setText(R.string.text_Friday);
                 cotd_image.setColorFilter(Color.rgb(30, 20, 190));
                 break;
             case Calendar.SATURDAY:
-                cotd_description.setText("Today's colour is Violet. This colour is known to represent creativity, inspiration and ambition.");
+                cotd_description.setText(R.string.text_Saturday);
                 cotd_image.setColorFilter(Color.rgb(240,130,240));
                 break;
         }

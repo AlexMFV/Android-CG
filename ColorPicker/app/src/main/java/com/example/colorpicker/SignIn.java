@@ -3,6 +3,7 @@ package com.example.colorpicker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.colorpicker.R.string;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,6 +36,7 @@ public class SignIn extends AppCompatActivity {
     private FirebaseAuth fbAuth;
 
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,7 @@ public class SignIn extends AppCompatActivity {
         signin = findViewById(R.id.btnSignin);
         btnReset = findViewById(R.id.btnResetPwd);
 
-        info.setText("Attempts remaining: " + counter);
+        info.setText(String.format("%s %d", getString(string.text_Attempts), counter));
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,10 +102,11 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("DefaultLocale")
     private void checkReset(){
         if(counter > 0){
             counter--; //Disables SignIn button after x attempts
-            info.setText(" Attempts remaining:" + counter);
+            info.setText(String.format("%s %d", getString(string.text_Attempts) + counter));
         }
 
         if(counter == 0){

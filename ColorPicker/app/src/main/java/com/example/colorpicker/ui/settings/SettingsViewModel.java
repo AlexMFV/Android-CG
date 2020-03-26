@@ -11,9 +11,6 @@ import com.example.colorpicker.MainActivity;
 
 public class SettingsViewModel extends ViewModel {
 
-    public SettingsViewModel() {
-
-
-    }
+    public SettingsViewModel() { }
 
 }
