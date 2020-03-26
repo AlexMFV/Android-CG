@@ -1,5 +1,6 @@
 package com.example.colorpicker.ui.picker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.colorpicker.R;
+import com.example.colorpicker.Share;
+import com.example.colorpicker.ui.colour.Colour;
+import com.example.colorpicker.ui.colour.ColourScheme;
+import com.example.colorpicker.ui.common.Algorithms;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerView;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
@@ -25,6 +32,9 @@ public class PickerFragment extends Fragment {
     private TextView argbValue;
     private BrightnessSlideBar sliderBar;
     private Button generate;
+    private int palette_number = 2;
+
+    Colour newColour;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -51,9 +61,10 @@ public class PickerFragment extends Fragment {
         //Event for when a new color is picked
         colorPicker.setColorListener(new ColorEnvelopeListener() {
             @Override
-            public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
-                pickerViewModel.UpdateColorBox(colorBox, envelope);
-                pickerViewModel.UpdateColorValue(hexValue, argbValue, envelope);
+            public void onColorSelected(ColorEnvelope _envelope, boolean fromUser) {
+                pickerViewModel.UpdateColorBox(colorBox, _envelope);
+                pickerViewModel.UpdateColorValue(hexValue, argbValue, _envelope);
+                newColour = new Colour(_envelope.getArgb()[1], _envelope.getArgb()[2], _envelope.getArgb()[3]);
             }
         });
 
@@ -64,6 +75,11 @@ public class PickerFragment extends Fragment {
             public void onClick(View v) {
                 /*Generate Send the Selected Colour and the number of colours in the palette to
                 * The colour generator page*/
+
+                ColourScheme scheme = Algorithms.Random(newColour, 4);
+                Intent intent = new Intent(getContext(), Share.class);
+                intent.putExtra("Generated_Scheme", new Gson().toJson(scheme));
+                startActivity(intent);
             }
         });
     }
