@@ -31,12 +31,25 @@ public class SettingsFragment extends Fragment {
                 redirectMenu();
             }
         });
+        btnSwitch.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                if(btnSwitch.isChecked()){
+
+                }
+            }
+        });
+
         return root;
     }
+
 
     public void redirectMenu(){
         Intent myIntent = new Intent(SettingsFragment.this.getActivity(), HomePage.class);
         startActivity(myIntent);
         SettingsFragment.this.getActivity().finish();
     }
+
+    btnSwitch.setOnClickListener(new View.OnClickListener(){
+
+    })
 }
