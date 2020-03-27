@@ -1,5 +1,10 @@
 package com.example.colorpicker.ui.common;
 
+import com.example.colorpicker.ui.colour.Colour;
+
+/**
+ * @author Alex Valente
+ */
 public class Schemes {
     String uid;
     String size;
@@ -10,6 +15,16 @@ public class Schemes {
 
     public Schemes(){ }
 
+    /**
+     * Constructor for the Schemes class
+     * @param uid String with and ID corresponding to the respective user
+     * @param size Integer representing the size of the Colour list
+     * @param color1 Object of type Colour, represents the first colour in the list.
+     * @param color2 Object of type Colour, represents the second colour in the list.
+     * @param color3 Object of type Colour, represents the third colour in the list.
+     * @param color4 Object of type Colour, represents the forth colour in the list.
+     * @see Colour
+     */
     public Schemes(String uid, String size, String color1, String color2, String color3, String color4) {
         this.uid = uid;
         this.size = size;

@@ -36,6 +36,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //FireBase Instances
         fbAuth = FirebaseAuth.getInstance(); //Make the connection to FireBase
 
         userName = findViewById(R.id.userName2);
@@ -57,19 +58,28 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+    /**
+     * Once the user enters their details, this method is responsible for sending the data to  FireBase to create a new user account
+     * @param usr String containing the user valid email
+     * @param pwd String containing the user valid password
+     */
     public void RegisterNewUser(final String usr, String pwd){
         fbAuth.createUserWithEmailAndPassword(usr, pwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>(){
 			public void onComplete(@NonNull Task<AuthResult> task) {
 				if (!task.isSuccessful()) {
 					Toast.makeText(SignUp.this, "There was an error creating the account!", Toast.LENGTH_LONG).show();
 				} else {
+				    //Get the ID of the current signed in user
 				    String userID = fbAuth.getCurrentUser().getUid();
+				    //Creates an instance on the FirebaseDatabase
                     usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
 
+                    //Hash map mapped to the structure of the database table
                     HashMap userMap = new HashMap();
                     userMap.put("username", CreateUsername(usr));
                     userMap.put("join_date", new Date());
 
+                    //Creates a new field for the user to be created
                     usersRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
@@ -91,6 +101,11 @@ public class SignUp extends AppCompatActivity {
 		});
 	}
 
+    /**
+     * Create a temporary username from the provided email address
+     * @param email String containing an email address
+     * @return String with a username based on the email
+     */
     public String CreateUsername(String email) {
         return email.substring(0, email.indexOf("@"));
     }

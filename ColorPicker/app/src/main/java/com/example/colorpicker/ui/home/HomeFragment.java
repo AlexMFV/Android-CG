@@ -22,6 +22,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
 public class HomeFragment extends Fragment {
@@ -38,11 +39,17 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         homeViewModel.loadColourOfTheDay(root);
 
+        //Start FireBase Instances
         mAuth = FirebaseAuth.getInstance();
+
+        //Get the current user ID
         userId = mAuth.getCurrentUser().getUid();
+
+        //References for the Database and Storage
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         postsRef = FirebaseDatabase.getInstance().getReference().child("Photos");
 
+        //Setting the RecyclerView as a Layout Manager Template
         postList = root.findViewById(R.id.lstPosts);
         postList.setHasFixedSize(true);
         LinearLayoutManager linearLayout = new LinearLayoutManager(getContext());
@@ -55,6 +62,14 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    /**
+     * This method is responsible for Querying the Firebase Storage and returning all the images associated with the user
+     * (Every user can see every image from every account)
+     * @see FirebaseStorage
+     * @see FirebaseDatabase
+     * @see FirebaseRecyclerAdapter
+     * @see FirebaseRecyclerOptions
+     */
     private void DisplayImagePosts(){
         FirebaseRecyclerOptions<Posts> options = new FirebaseRecyclerOptions.Builder<Posts>()
                 .setQuery(postsRef, Posts.class)
@@ -64,6 +79,7 @@ public class HomeFragment extends Fragment {
                 new FirebaseRecyclerAdapter<Posts, PostsViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull PostsViewHolder holder, int position, @NonNull Posts model) {
+                        //Through the ViewModel set the values from the database to the elements
                         holder.username.setText(model.getUsername());
                         holder.date.setText(model.getDate());
                         holder.time.setText(model.getTime());
@@ -73,16 +89,21 @@ public class HomeFragment extends Fragment {
                     @NonNull
                     @Override
                     public PostsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        //Set the template fot the ViewHolder
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_display_layout, parent, false);
                         PostsViewHolder viewHolder = new PostsViewHolder(view);
                         return viewHolder;
                     }
                 };
 
+        //Telling the Recycler List which Template to use
         postList.setAdapter(adapter);
         adapter.startListening();
     }
 
+    /**
+     * Static class responsible for the static elements in the ViewHolder
+     */
     public static class PostsViewHolder extends RecyclerView.ViewHolder{
 
         View mView;

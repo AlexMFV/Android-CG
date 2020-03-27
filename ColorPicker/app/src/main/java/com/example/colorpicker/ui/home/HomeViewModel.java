@@ -13,17 +13,31 @@ import com.example.colorpicker.R;
 
 import java.util.Calendar;
 
+/**
+ * @author Adam Guiton
+ * @author Reece Ward
+ */
 public class HomeViewModel extends ViewModel {
 
+    /**
+     * Constructor for the HomeViewModel
+     */
     public HomeViewModel() { }
 
+    /**
+     * This method is responsible for grabbing the current day of the week and assigning a preset String
+     * to describe a color of the Day
+     * @param root Variable of type View, used to access the static members
+     */
     void loadColourOfTheDay(View root) {
         TextView cotd_description = root.findViewById(R.id.text_colour_description);
         ImageView cotd_image = root.findViewById(R.id.image_cotd);
 
+        //Start Calendar Instance
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_WEEK);
 
+        //Color Of The Day and Description defined here
         switch (day) {
             case Calendar.SUNDAY:
                 cotd_description.setText(R.string.text_Sunday);

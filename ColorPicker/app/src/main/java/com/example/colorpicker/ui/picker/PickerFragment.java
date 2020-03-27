@@ -19,7 +19,6 @@ import com.example.colorpicker.ui.colour.Colour;
 import com.example.colorpicker.ui.colour.ColourScheme;
 import com.example.colorpicker.ui.common.Algorithms;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerView;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
@@ -45,7 +44,10 @@ public class PickerFragment extends Fragment {
         return root;
     }
 
-    //Set all the necessary Event Handlers for the ColorPicker
+    /**
+     * This method is responsible for setting all the necessary Event Handlers for the ColorPicker
+     * @param root
+     */
     private void SetEventListeners(final View root){
         //Get the reference to the color picker and the color box
         ColorPickerView colorPicker = root.findViewById(R.id.colorPickerView);
@@ -56,19 +58,23 @@ public class PickerFragment extends Fragment {
         Button generate = root.findViewById(R.id.btnGenerate);
         RadioGroup rGroup = root.findViewById(R.id.radioGroup);
 
+        //Attach Slider Bars to the ColorPickerView
         colorPicker.attachBrightnessSlider(sliderBar);
 
         //Event for when a new color is picked
         colorPicker.setColorListener(new ColorEnvelopeListener() {
             @Override
             public void onColorSelected(ColorEnvelope _envelope, boolean fromUser) {
+                //Updates the values every time the selected colour changes
                 pickerViewModel.UpdateColorBox(colorBox, _envelope);
                 pickerViewModel.UpdateColorValue(hexValue, argbValue, _envelope);
                 newColour = new Colour(_envelope.getArgb()[1], _envelope.getArgb()[2], _envelope.getArgb()[3]);
             }
         });
 
-        /*Event for when the Generate Palette button is pressed*/
+        /**
+         * This Event is responsible for running the Generate Colour Palette code.
+         */
         generate.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,11 +84,13 @@ public class PickerFragment extends Fragment {
 
                 ColourScheme scheme = Algorithms.Random(newColour, palette_number);
                 Intent intent = new Intent(getContext(), Share.class);
+                //Send the palette to the next activity
                 intent.putExtra("Generated_Scheme", new Gson().toJson(scheme));
                 startActivity(intent);
             }
         });
 
+        //Set the amount of colour to be generated in the palette
         rGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

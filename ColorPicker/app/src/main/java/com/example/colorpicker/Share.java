@@ -45,6 +45,12 @@ import java.util.HashMap;
 
 import static androidx.constraintlayout.widget.Constraints.*;
 
+/**
+ * @author Alex Valente
+ * @author Rosie Murphy
+ * @author Furqan Khan
+ * @author Benedita Laranjeira
+ */
 public class Share extends Activity {
 
     Button btnShare;
@@ -71,14 +77,18 @@ public class Share extends Activity {
         String jsonObj = getIntent().getStringExtra("Generated_Scheme");
         scheme = new Gson().fromJson(jsonObj, ColourScheme.class);
 
+        //FireBase Instances and References
         mAuth = FirebaseAuth.getInstance();
+        //Current UserId
         userId = mAuth.getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         schemesRef = FirebaseDatabase.getInstance().getReference().child("Schemes");
 
+        //Logic Methods
         BuildColourScheme();
         ShareMessageBody();
 
+        //Get references for the elements
         btnSelected = findViewById(R.id.btnSelected);
         txtHex = findViewById(R.id.txtHex);
         txtRGBA = findViewById(R.id.txtRGBA);
@@ -86,6 +96,7 @@ public class Share extends Activity {
         btnShare = findViewById(R.id.Bshare);
         btnSave = findViewById(R.id.Bsave);
 
+        //EventListeners
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +119,10 @@ public class Share extends Activity {
         UpdateValues(0);
     }
 
+    /**
+     * This method starts by generating a random ID with the userID, current date and current time, for added security.
+     * Then an HashMap is created to map the Database Table and is then sent to Firebase to be added as a field.
+     */
     private void UploadColourSchemeToFireBase() {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -160,6 +175,10 @@ public class Share extends Activity {
         });
     }
 
+    /**
+     * This method manipulates the string message body while sharing, so that the user can share a link
+     * that will show the generated palette in a website automatically
+     */
     private void ShareMessageBody() {
         String url = "https://colors.muz.li/palette/<0>/<1>/<2>/<3>/ffffff";
         for(int i = 0; i < scheme.Size(); i++){
@@ -186,7 +205,9 @@ public class Share extends Activity {
         UpdateValues(0);
     }*/
 
-    //Creates the Grid for the colours to be displayed
+    /**
+     * Dynamically creates the Grid for the colours to be displayed
+     */
     public void BuildColourScheme(){
         for(int idx = 0; idx < scheme.Size(); idx++){
             Button btn = new Button(this);
@@ -217,6 +238,10 @@ public class Share extends Activity {
         }
     }
 
+    /**
+     * Updates all the values from the text boxes to the buttons resembling the selected colours.
+     * @param idx Receives an Integer that defines the index of the colour to be updated to.
+     */
     public void UpdateValues(int idx){
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
@@ -231,6 +256,11 @@ public class Share extends Activity {
         txtRGBA.setText(String.format("%s %s", getString(R.string.text_RgbValue), scheme.Get(idx).StringRGBA()));
     }
 
+    /**
+     * This method transforms the Id of the button into an index, so that it can be determined which colour it resembles.
+     * @param id Receives an Integer that represents an element ID
+     * @return Integer with the index it's colour
+     */
     public int GetButtonID(int id){
         Button btn = findViewById(id);
         return Integer.valueOf(btn.getTag().toString());

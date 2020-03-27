@@ -1,6 +1,5 @@
 package com.example.colorpicker;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,18 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.example.colorpicker.ui.common.Posts;
 import com.example.colorpicker.ui.common.Schemes;
-import com.example.colorpicker.ui.home.HomeFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class ViewSchemes extends AppCompatActivity {
 
@@ -39,6 +32,7 @@ public class ViewSchemes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_schemes);
 
+        //Set the template for the RecycleListView
         schemesList = findViewById(R.id.lstSchemes);
         schemesList.setHasFixedSize(true);
         LinearLayoutManager linearLayout = new LinearLayoutManager(getBaseContext());
@@ -46,6 +40,7 @@ public class ViewSchemes extends AppCompatActivity {
         linearLayout.setStackFromEnd(true);
         schemesList.setLayoutManager(linearLayout);
 
+        //Firebase Instances
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -54,6 +49,10 @@ public class ViewSchemes extends AppCompatActivity {
         DisplayImagePosts();
     }
 
+    /**
+     * This method is responsible for updating the RecyclerListView with the images from the database
+     * this method loads the images in the background, while it only show a limited amount otf them to the user.
+     */
     private void DisplayImagePosts(){
         FirebaseRecyclerOptions<Schemes> options = new FirebaseRecyclerOptions.Builder<Schemes>()
                 .setQuery(schemesRef, Schemes.class)
@@ -97,6 +96,9 @@ public class ViewSchemes extends AppCompatActivity {
         adapter.startListening();
     }
 
+    /**
+     * Class responsible for the static members of the template
+     */
     public static class SchemesViewHolder extends RecyclerView.ViewHolder{
         Button col1, col2, col3, col4;
 
@@ -110,6 +112,12 @@ public class ViewSchemes extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is responsible for converting the RGB String values into a Drawable that later will be added to the
+     * palette buttons
+     * @param rgb String containing RGB values
+     * @return Object of type Drawable
+     */
     public Drawable ToDrawable(String rgb){
         rgb = rgb.substring(1, rgb.length()-1);
         String[] values = rgb.split(",");
