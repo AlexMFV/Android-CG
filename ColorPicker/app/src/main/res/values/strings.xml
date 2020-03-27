@@ -36,7 +36,8 @@
     <!-- Strings Rosie -->
     <string name = "title_imageupload">Image Upload</string>
     <string name = "text_explanation">Upload your image by pressing either of the buttons, your image will appear below.</string>
-    <string name = "text_button_upload">Select Image</string>
+    <string name = "text_button_upload">Upload Image</string>
+    <string name = "text_button_select">Select/Take Image</string>
     <string name = "content_desc">Image to be uploaded</string>
 
     <!-- Strings Alex -->
