@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -12,16 +13,35 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
 
 import com.example.colorpicker.ui.colour.Colour;
 import com.example.colorpicker.ui.colour.ColourScheme;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 
 import static androidx.constraintlayout.widget.Constraints.*;
 
@@ -29,13 +49,18 @@ public class Share extends Activity {
 
     Button btnShare;
     Intent shareIntent;
-    String shareBody = "this will be changed to become the colour scheme picked to be shared";
+    String shareBody;
     ColourScheme scheme;
     Button btnSelected;
     TextView txtHex;
     TextView txtRGBA;
     TextView txtCMYK;
+    Button btnSave;
+    String currDate, currTime, finalDate, userId;
     //Button changeSelected;
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference usersRef, schemesRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +71,20 @@ public class Share extends Activity {
         String jsonObj = getIntent().getStringExtra("Generated_Scheme");
         scheme = new Gson().fromJson(jsonObj, ColourScheme.class);
 
+        mAuth = FirebaseAuth.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        schemesRef = FirebaseDatabase.getInstance().getReference().child("Schemes");
+
         BuildColourScheme();
+        ShareMessageBody();
 
         btnSelected = findViewById(R.id.btnSelected);
         txtHex = findViewById(R.id.txtHex);
         txtRGBA = findViewById(R.id.txtRGBA);
         txtCMYK = findViewById(R.id.txtCMYK);
         btnShare = findViewById(R.id.Bshare);
+        btnSave = findViewById(R.id.Bsave);
 
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +97,85 @@ public class Share extends Activity {
             }
         });
 
+        btnSave.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnSave.setEnabled(false);
+                UploadColourSchemeToFireBase();
+            }
+        });
+
         UpdateValues(0);
+    }
+
+    private void UploadColourSchemeToFireBase() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        currDate = dateFormat.format(cal.getTime());
+        dateFormat = new SimpleDateFormat("HH:mm:ss");
+        currTime = dateFormat.format(cal.getTime());
+
+        finalDate = currDate + currTime;
+
+        usersRef.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+
+                    HashMap map = new HashMap();
+                    map.put("uid", userId);
+                    map.put("size", String.valueOf(scheme.Size()));
+
+                    for(int i = 0; i < scheme.Size(); i++){
+                        map.put("color"+(i+1), scheme.Get(i).StringRGBA());
+                    }
+
+                    if(scheme.Size() == 3)
+                        map.put("color4", "(255,255,255)");
+                    else
+                    if(scheme.Size() == 2) {
+                        map.put("color3", "(255,255,255)");
+                        map.put("color4", "(255,255,255)");
+                    }
+
+                    schemesRef.child(userId + finalDate).updateChildren(map).addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getBaseContext(), "Scheme has been saved!", Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                Toast.makeText(getBaseContext(), "Error while saving the scheme!", Toast.LENGTH_LONG).show();
+                                btnSave.setEnabled(true);
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void ShareMessageBody() {
+        String url = "https://colors.muz.li/palette/<0>/<1>/<2>/<3>/ffffff";
+        for(int i = 0; i < scheme.Size(); i++){
+            String toReplace = "<" + i + ">";
+            url = url.replace(toReplace, scheme.Get(i).StringHex().substring(1));
+        }
+
+        if(scheme.Size() == 3)
+            url = url.replace("<3>", "ffffff");
+        else
+            if(scheme.Size() == 2) {
+                url = url.replace("<3>", "ffffff");
+                url = url.replace("<2>", "ffffff");
+            }
+
+        shareBody = url;
     }
 
     //NOT YET IMPLEMENTED
