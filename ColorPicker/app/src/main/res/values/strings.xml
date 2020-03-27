@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Color Picker</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Image Upload</string>
 
     <!-- Strings Benedita-->
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Notifications</string>  
     <string name="title_activity_signin">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -14,7 +14,8 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="title_activity_sign_in">Sign in</string>
+    <string name="title_activity_sign_in">Sign In</string>
+    <string name="title_activity_sign_up">Sign Up</string>
 
   <!-- Strings Adam-->
     <string name="Settings">Settings</string>
@@ -27,19 +28,49 @@
     <string name="ImageUpload">Upload</string>
     <string name="SettingsBottom">Settings</string>
     <string name="DarkMode">Dark Mode</string>
-    <string name="Enabledisable">Enable/Disable</string>
     <string name="SavedColourScheme">Saved Schemes</string>
-    <string name="ViewShemes">View</string>
-    <string name="backtomenu">Back to Menu</string>
+    <string name="ViewSchemes">View</string>
+    <string name="backToMenu">Back to Menu</string>
     <string name="title_settings_page">Settings</string>
+
+    <!-- Strings Rosie -->
+    <string name = "title_imageupload">Image Upload</string>
+    <string name = "text_explanation">Upload your image by pressing either of the buttons, your image will appear below.</string>
+    <string name = "text_button_upload">Select Image</string>
+    <string name = "content_desc">Image to be uploaded</string>
 
     <!-- Strings Alex -->
     <string name="title_colorPicker">Color Picker</string>
-    <string name="text_hexValue">Hex Value</string>
-    <string name="text_argbValue">Argb Value</string>
+    <string name="text_hexValue">Hex Value: </string>
+    <string name="text_CmykValue">CMYK Value: </string>
+    <string name="text_RgbValue">RGB Value: </string>
     <string name="text_numberColours">Number of Colours in Palette:</string>
     <string name="radio_2Colours">2</string>
     <string name="radio_3Colours">3</string>
     <string name="radio_4Colours">4</string>
     <string name="text_generatePalette">Generate Palette</string>
+    <string name="txt_SelectedButton">Selected</string>
+    <string name="btn_SaveScheme">Save</string>
+    <string name="btn_ShareScheme">Share</string>
+    <string name="btn_ChangeSelectedColour">Change Selected Color</string>
+    <string name="text_cotd">Colour of the day!</string>
+    <string name="desc_cotd">Today\'s Colour</string>
+    <string name="btn_Register">Register</string>
+    <string name="input_password">Password</string>
+    <string name="input_repeatPassword">Repeat Password</string>
+    <string name="input_email">E-mail</string>
+    <string name="input_signIn">SignIn</string>
+    <string name="text_Attempts">Attempts remaining:</string>
+    <string name="btn_resetPassword">Reset Password</string>
+    <string name="btn_Start">Start</string>
+    <string name="btn_StartRegister">Register</string>
+    <string name="btn_StartSingIn">Sign In</string>
+    <string name="image_ColorPicker">TODO</string>
+    <string name="text_Sunday">Today\'s colour of the day is Orange. This colour is known to represent an adventurous nature and joy or perhaps a time of change.</string>
+    <string name="text_Monday">Today\'s colour of the day is White. This colour is known to represent purity, innocence and cleanliness.</string>
+    <string name="text_Tuesday">Today\'s colour of the day is Red. This colour is known to represent energy, strength, power and desire.</string>
+    <string name="text_Wednesday">Today\'s colour of the day is Green. This colour is known to represent wealth, renewal and to be the colour of nature.</string>
+    <string name="text_Thursday">Today\'s colour is Light Yellow. This colour is known to represent insight, enlightenment and happiness.</string>
+    <string name="text_Friday">Today\'s colour is Blue. This colour is known to represent tranquility, calmness and stability, often associated with the sky and sea.</string>
+    <string name="text_Saturday">Today\'s colour is Violet. This colour is known to represent creativity, inspiration and ambition.</string>
 </resources>

@@ -13,11 +13,11 @@ public class PickerViewModel extends ViewModel {
     public PickerViewModel() {
     }
 
-    public void UpdateColorBox(Button colorBox, ColorEnvelope color) {
+    void UpdateColorBox(Button colorBox, ColorEnvelope color) {
         colorBox.setBackgroundColor(color.getColor());
     }
 
-    public void UpdateColorValue(TextView hex, TextView argb, ColorEnvelope color){
+    void UpdateColorValue(TextView hex, TextView argb, ColorEnvelope color){
         hex.setText(("Hex Value: #" + color.getHexCode().substring(2)));
         int[] argbValues = color.getArgb();
         argb.setText(("RGB Value: (" + argbValues[1] + "," + argbValues[2] + "," + argbValues[3] + ")"));

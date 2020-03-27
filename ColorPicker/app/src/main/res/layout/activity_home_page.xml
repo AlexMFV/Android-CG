@@ -11,7 +11,7 @@
         android:layout_width="158dp"
         android:layout_height="75dp"
         android:onClick="onClickStartHandler"
-        android:text="Start"
+        android:text="@string/btn_Start"
         android:textAllCaps="false"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,8 +25,8 @@
         android:id="@+id/signupButton"
         android:layout_width="158dp"
         android:layout_height="75dp"
-        android:onClick="onClickRegisterHandler"
-        android:text="Register"
+        android:onClick="onClickRegHandler"
+        android:text="@string/btn_StartRegister"
         android:textAllCaps="false"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
         android:layout_width="158dp"
         android:layout_height="75dp"
         android:onClick="onClickHandler"
-        android:text="Sign In"
+        android:text="@string/btn_StartSingIn"
         android:textAllCaps="false"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,5 +60,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.103"
-        app:srcCompat="@drawable/icon" />
+        app:srcCompat="@drawable/icon"
+        android:contentDescription="@string/image_ColorPicker" />
 </androidx.constraintlayout.widget.ConstraintLayout>

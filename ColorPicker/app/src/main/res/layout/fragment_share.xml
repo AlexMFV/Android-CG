@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
+
+
+    <LinearLayout
+        android:id="@+id/coloursLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="250dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/btnChangeSelected"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btnChangeSelected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/btn_ChangeSelectedColour"
+        app:layout_constraintBottom_toTopOf="@+id/Bshare"
+        tools:layout_editor_absoluteX="161dp" />
+
+    <Button
+        android:id="@+id/Bshare"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="0.5"
+        app:layout_constraintWidth_percent="0.5"
+        android:text="@string/btn_ShareScheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Bsave" />
+
+    <Button
+        android:id="@+id/Bsave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="0.5"
+        app:layout_constraintWidth_percent="0.5"
+        android:text="@string/btn_SaveScheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Bshare" />
+
+    <Button
+        android:id="@+id/btnSelected"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="108dp"
+        android:text="@string/txt_SelectedButton"
+        app:layout_constraintBottom_toTopOf="@+id/btnChangeSelected"
+        app:layout_constraintEnd_toStartOf="@+id/txtHex"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coloursLayout" />
+
+    <TextView
+        android:id="@+id/txtHex"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="18dp"
+        android:text="@string/text_hexValue"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toTopOf="@+id/txtRGBA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSelected"
+        app:layout_constraintTop_toBottomOf="@+id/coloursLayout" />
+
+    <TextView
+        android:id="@+id/txtCMYK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="107dp"
+        android:text="@string/text_CmykValue"
+        app:layout_constraintBottom_toTopOf="@+id/btnChangeSelected"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnSelected"
+        app:layout_constraintTop_toBottomOf="@+id/txtRGBA" />
+
+    <TextView
+        android:id="@+id/txtRGBA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="18dp"
+        android:text="@string/text_RgbValue"
+        app:layout_constraintBottom_toTopOf="@+id/txtCMYK"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnSelected"
+        app:layout_constraintTop_toBottomOf="@+id/txtHex" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
