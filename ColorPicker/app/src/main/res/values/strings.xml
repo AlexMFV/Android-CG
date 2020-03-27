@@ -4,7 +4,7 @@
     <string name="title_dashboard">Image Upload</string>
 
     <!-- Strings Benedita-->
-    <string name="title_notifications">Notifications</string>  
+    <string name="title_notifications">Notifications</string>
     <string name="title_activity_signin">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -16,8 +16,9 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_sign_up">Sign Up</string>
+    <string name="title_activity_colour_schemes">Colour Schemes</string>
 
-  <!-- Strings Adam-->
+    <!-- Strings Adam-->
     <string name="Settings">Settings</string>
     <string name="Logout">Logout</string>
     <string name="LogoutText">Logout of account: </string>
@@ -34,11 +35,11 @@
     <string name="title_settings_page">Settings</string>
 
     <!-- Strings Rosie -->
-    <string name = "title_imageupload">Image Upload</string>
-    <string name = "text_explanation">Upload your image by pressing either of the buttons, your image will appear below.</string>
-    <string name = "text_button_upload">Upload Image</string>
-    <string name = "text_button_select">Select/Take Image</string>
-    <string name = "content_desc">Image to be uploaded</string>
+    <string name="title_imageupload">Image Upload</string>
+    <string name="text_explanation">Upload your image by pressing either of the buttons, your image will appear below.</string>
+    <string name="text_button_upload">Upload Image</string>
+    <string name="text_button_select">Select/Take Image</string>
+    <string name="content_desc">Image to be uploaded</string>
 
     <!-- Strings Alex -->
     <string name="title_colorPicker">Color Picker</string>

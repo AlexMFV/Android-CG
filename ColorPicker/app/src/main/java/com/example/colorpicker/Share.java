@@ -29,7 +29,7 @@ public class Share extends Activity {
 
     Button btnShare;
     Intent shareIntent;
-    String shareBody = "this will be changed to become the colour scheme picked to be shared";
+    String shareBody;
     ColourScheme scheme;
     Button btnSelected;
     TextView txtHex;
@@ -47,6 +47,7 @@ public class Share extends Activity {
         scheme = new Gson().fromJson(jsonObj, ColourScheme.class);
 
         BuildColourScheme();
+        ShareMessageBody();
 
         btnSelected = findViewById(R.id.btnSelected);
         txtHex = findViewById(R.id.txtHex);
@@ -66,6 +67,24 @@ public class Share extends Activity {
         });
 
         UpdateValues(0);
+    }
+
+    private void ShareMessageBody() {
+        String url = "https://colors.muz.li/palette/<0>/<1>/<2>/<3>/ffffff";
+        for(int i = 0; i < scheme.Size(); i++){
+            String toReplace = "<" + i + ">";
+            url = url.replace(toReplace, scheme.Get(i).StringHex().substring(1));
+        }
+
+        if(scheme.Size() == 3)
+            url = url.replace("<3>", "ffffff");
+        else
+            if(scheme.Size() == 2) {
+                url = url.replace("<3>", "ffffff");
+                url = url.replace("<2>", "ffffff");
+            }
+
+        shareBody = url;
     }
 
     //NOT YET IMPLEMENTED

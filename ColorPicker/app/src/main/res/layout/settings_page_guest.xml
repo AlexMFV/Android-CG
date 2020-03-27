@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/DarkMode"
         android:textSize="24sp"
-        app:fontFamily="casual"
+        app:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
