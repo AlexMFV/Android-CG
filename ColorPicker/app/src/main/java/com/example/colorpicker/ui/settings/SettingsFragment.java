@@ -18,6 +18,7 @@ public class SettingsFragment extends Fragment {
 
     private SettingsViewModel settingsFragment;
     private Button btnLogout;
+    private Button btnSwitch;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +50,3 @@ public class SettingsFragment extends Fragment {
         SettingsFragment.this.getActivity().finish();
     }
 
-    btnSwitch.setOnClickListener(new View.OnClickListener(){
-
-    })
-}
