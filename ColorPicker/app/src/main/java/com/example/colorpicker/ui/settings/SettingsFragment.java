@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.colorpicker.HomePage;
+import com.example.colorpicker.MainActivity;
 import com.example.colorpicker.R;
 
 public class SettingsFragment extends Fragment {
@@ -37,14 +38,17 @@ public class SettingsFragment extends Fragment {
         btnSwitch.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if(btnSwitch.isChecked()){
-                    activity.setTheme(R.style.DarkMode);
+                    getContext().setTheme(R.style.DarkMode);
+                    startActivity(new Intent(getContext(), MainActivity.class));
                 }
 
                 else{
-                    setContentView(R.layout.activity_main);
+                    getContext().setTheme(R.style.AppTheme);
+                    startActivity(new Intent(getContext(), MainActivity.class));
+                }
                 }
 
-                }
+
 
         });
 
