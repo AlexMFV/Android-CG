@@ -39,4 +39,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.3' //FireBase Implementation
     implementation 'com.google.firebase:firebase-auth:19.3.0'//FireBase Implementation
     implementation 'com.google.code.gson:gson:2.8.6' //GJSON Implementation
+    implementation 'com.google.firebase:firebase-database:19.2.1' //Firebase Database Implementation
+    implementation 'com.google.firebase:firebase-storage:19.1.1' //Firebase Storage Implementation
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1' //Firebase UI Implementation
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

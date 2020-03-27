@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -44,48 +45,33 @@
         app:srcCompat="@drawable/stockcolour"
         android:contentDescription="@string/desc_cotd" />
 
-    <ImageView
-        android:id="@+id/image_cotd_similar1"
-        android:layout_width="180dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="10dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="301dp"
+        android:layout_marginBottom="469dp"
+        android:text="@string/text_RecentPosts"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_colour_description"
-        app:srcCompat="@drawable/stockimage1" />
+        app:layout_constraintTop_toBottomOf="@+id/text_colour_description" />
 
-    <ImageView
-        android:id="@+id/image_cotd_similar2"
-        android:layout_width="180dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="10dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lstPosts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_colour_description"
-        app:srcCompat="@drawable/stockimage2" />
-
-    <ImageView
-        android:id="@+id/image_cotd_similar4"
-        android:layout_width="180dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_cotd_similar2"
-        app:srcCompat="@drawable/stockimage4" />
-
-    <ImageView
-        android:id="@+id/image_cotd_similar3"
-        android:layout_width="180dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_cotd_similar1"
-        app:srcCompat="@drawable/stockimage3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

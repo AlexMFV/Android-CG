@@ -105,7 +105,7 @@ public class SignIn extends AppCompatActivity {
     private void checkReset(){
         if(counter > 0){
             counter--; //Disables SignIn button after x attempts
-            info.setText(String.format("%s %d", getString(string.text_Attempts) + counter));
+            info.setText(String.format("%s %d", getString(string.text_Attempts), counter));
         }
 
         if(counter == 0){
