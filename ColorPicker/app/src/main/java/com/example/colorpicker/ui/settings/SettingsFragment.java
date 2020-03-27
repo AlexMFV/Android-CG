@@ -32,6 +32,7 @@ public class SettingsFragment extends Fragment {
                 redirectMenu();
             }
         });
+        btnSwitch = root.findViewById(R.id.switch1);
         btnSwitch.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if(btnSwitch.isChecked()){
