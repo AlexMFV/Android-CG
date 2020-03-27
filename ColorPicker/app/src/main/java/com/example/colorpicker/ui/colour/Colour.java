@@ -2,14 +2,30 @@ package com.example.colorpicker.ui.colour;
 
 import java.text.DecimalFormat;
 
+/**
+ * @author Alex Valente
+ */
 public class Colour {
-    //String colour_name;
+
+    /**
+     * Variables for the various types of Colour representation
+     */
     private String hex;
     private double[] cmyk;
     private int[] rgba;
-    //int[] hsl; /* Mode: º-%-% (degree, percentage, percentage)*/ /* DEPRECATED */
-    //double luminance;
 
+    /*DEPRECATED VARIABLES*/
+        //String colour_name;
+        //int[] hsl; /* Mode: º-%-% (degree, percentage, percentage)*/
+        //double luminance;
+
+
+    /**
+     * Constructor for the Colour class that receives 3 integers corresponding to the respective RGB values.
+     * @param r Corresponds to the color Red in the Spectrum
+     * @param g Corresponds to the color Green in the Spectrum
+     * @param b Corresponds to the color Blue in the Spectrum
+     */
     public Colour(int r, int g, int b){
         this.hex = ConvertToHex(r, g, b);
         this.cmyk = ConvertToCMYK(r, g, b);
@@ -17,12 +33,25 @@ public class Colour {
         //this.hsl = ConvertToHSL(r, g, b); /* DEPRECATED */
     }
 
-    //public void Luminance(){ }
 
+    /**
+     * Converts a set of RGB values into the corresponding Hex values
+     * @param r Corresponds to the color Red in the Spectrum
+     * @param g Corresponds to the color Green in the Spectrum
+     * @param b Corresponds to the color Blue in the Spectrum
+     * @return Hexadecimal value that corresponds to a certain colour
+     */
     private String ConvertToHex(int r, int g, int b){
         return "#" + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
     }
 
+    /**
+     * Converts a set of RGB values into the corresponding CMYK values
+     * @param r Corresponds to the color Red in the Spectrum
+     * @param g Corresponds to the color Green in the Spectrum
+     * @param b Corresponds to the color Blue in the Spectrum
+     * @return Returns an array with values corresponding to CMYK (Cyan, Magenta, Yellow, Key) Colour
+     */
     private double[] ConvertToCMYK(int r, int g, int b){
         double _r = r/255.0;
         double _g = g/255.0;
@@ -41,25 +70,42 @@ public class Colour {
         return values;
     }
 
+    /**
+     * Get RGBA value of the colour.
+     * @return An integer array with RGBA values respectively.
+     */
     public int[] RGBA(){ return this.rgba; }
 
+    /**
+     * Get RGBA value of the colour in String format.
+     * @return A String formed with the object RGBA values.
+     */
     public String StringRGBA(){ return "(" + this.rgba[0] + "," + this.rgba[1] + "," + this.rgba[2] + ")"; }
 
+    /**
+     * Get CMYK value of the colour in String format.
+     * @return A String formed with the object CMYK values.
+     */
     public String StringCMYK(){
         DecimalFormat df = new DecimalFormat("#.##");
         return "(" + df.format(this.cmyk[0]) + "," + df.format(this.cmyk[1]) + "," + df.format(this.cmyk[2]) + "," + df.format(this.cmyk[3]) + ")";
     }
 
+    /**
+     * Get Hexadecimal value of the colour in String format.
+     * @return A String formed with the object Hexadecimal value.
+     */
     public String StringHex(){ return this.hex; }
 
-    /* DEPRECATED */
-    /*public int[] ConvertToHSL(int r, int g, int b){
-        int[] values = new int[3];
+    /* DEPRECATED METHOD */
+        /*public int[] ConvertToHSL(int r, int g, int b){
+            int[] values = new int[3];
 
-        values[0] = r >= 180;
-        values[1] = ;
-        values[2] = ;
+            values[0] = r >= 180;
+            values[1] = ;
+            values[2] = ;
 
-        return values;
-    }*/
+            return values;
+        }
+    */
 }

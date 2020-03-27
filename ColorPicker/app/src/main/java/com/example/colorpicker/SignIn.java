@@ -41,7 +41,9 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        //FireBase Instances
         fbAuth = FirebaseAuth.getInstance(); // Make connection to FireBase
+
         email = findViewById(R.id.userName); // assigns the variable to the id in the XML layout
         password = findViewById(R.id.userPassword);
         info = findViewById(R.id.tvInfo);
@@ -50,6 +52,7 @@ public class SignIn extends AppCompatActivity {
 
         info.setText(String.format("%s %d", getString(string.text_Attempts), counter));
 
+        //Event Handlers
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +69,12 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method validates if the user and password are valid before executing the Login
+     * @param usr String containing the user's email
+     * @param pwd String containing the user's password
+     * @see FirebaseAuth
+     */
     private void validate (String usr, String pwd){
         if(isValidEmail(usr) && isValidPwd(pwd))
             loginUser(usr, pwd);
@@ -73,15 +82,31 @@ public class SignIn extends AppCompatActivity {
             checkReset();
     }
 
+    /**
+     * This method uses a Regex to determine if the inserted email is valid.
+     * @param email String containing the email for verification
+     * @return Boolean if email is valid or not
+     * @see android.service.autofill.RegexValidator
+     */
     private boolean isValidEmail(String email){
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
 
+    /**
+     * This method only verifies if the password has the minimum length to be acceptable
+     * @param pwd String containing the user's password
+     * @return Boolean if the password is according to the requirements or not.
+     */
     private boolean isValidPwd(String pwd){
         return pwd.length() >= 6;
     }
 
+    /**
+     * This method is responsible for Loggin the user in by providing a valid email and password.
+     * @param usr String containing the user's email
+     * @param pwd String containing the user's password
+     */
     private void loginUser(String usr, String pwd){
         signin.setEnabled(false);
         fbAuth.signInWithEmailAndPassword(usr, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -101,6 +126,9 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
+    /**
+     * Updates the text of the attempts made in the user Login Page
+     */
     @SuppressLint("DefaultLocale")
     private void checkReset(){
         if(counter > 0){
@@ -114,6 +142,12 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
+    /**
+     * If the user fails to login a certain amount of time a button to reset the password is show, this method ensures the user
+     * receives and email to change the password for the respective email address.
+     * @param usr String containing the user's email
+     * @see FirebaseAuth
+     */
     private void sendResetEmail(String usr){
         btnReset.setEnabled(false);
         fbAuth.sendPasswordResetEmail(usr).addOnCompleteListener(new OnCompleteListener<Void>() {

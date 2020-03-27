@@ -11,6 +11,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * @author Alex Valente
+ */
 public class MainActivityGuest extends AppCompatActivity {
 
     @Override

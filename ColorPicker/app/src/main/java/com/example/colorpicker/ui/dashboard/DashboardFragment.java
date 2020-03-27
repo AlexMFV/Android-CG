@@ -56,6 +56,11 @@ import java.util.HashMap;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
+/**
+ * @author Alex Valente
+ * @author Rosie Murphy
+ * @Author Furqan Khan
+ */
 public class DashboardFragment extends Fragment {
 
     private ImageView viewImage;
@@ -63,6 +68,9 @@ public class DashboardFragment extends Fragment {
     private Button btnUpload;
     private String userId, imageUrl, currDate, currTime, finalDate;
 
+    /**
+     * FireBase Instances to allow connection to the Database and Authentication
+     */
     FirebaseAuth mAuth;
     StorageReference imageRef;
     DatabaseReference usersRef;
@@ -80,13 +88,17 @@ public class DashboardFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
 
+        //References to the database to allow write and read
         imageRef = FirebaseStorage.getInstance().getReference();
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         photosRef = FirebaseDatabase.getInstance().getReference().child("Photos");
 
+        //Instantiating the elements
         btnUpload = root.findViewById(R.id.btn_UploadPhoto);
         button = root.findViewById(R.id.btn_SelectPhoto);
         viewImage = root.findViewById(R.id.selectedImage);
+
+        //OnClick Event Listeners
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +116,12 @@ public class DashboardFragment extends Fragment {
         return root;
     }
 
+
+    /**
+     * This method executes the AlertDialog for the user to select which method to upload a photo
+     * Camera or Gallery
+     * @see AlertDialog
+     */
     private void selectImage(){
         final CharSequence[] options = { "Camera", "Gallery", "Exit"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
@@ -132,9 +150,21 @@ public class DashboardFragment extends Fragment {
         builder.show();
     }
 
+    /**
+     * This event is executed once the user selects an option from the AlertDialog opened on the selectImage() method. This method
+     * creates a temporary file in the phone internal storage and compresses the image so that it can be sent to the FireBase Storage
+     * without taking much space.
+     * @param requestCode Integer received as a response from the AlertDialog (option selected)
+     * @param resultCode Integer received as a response from the Alert Dialog (Valid selected option)
+     * @param data Intent that contains the image data, ready to be parsed to a Uri
+     * @see AlertDialog
+     * @see Intent
+     * @see Uri
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        /* Camera Result */
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 File f = new File(Environment.getExternalStorageState());
@@ -171,6 +201,7 @@ public class DashboardFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                /* Gallery Result */
             } else if (requestCode == 2) {
                 imageUri = data.getData();
                 String[] filePath = {MediaStore.Images.Media.DATA};
@@ -188,6 +219,17 @@ public class DashboardFragment extends Fragment {
         }
     }
 
+
+    /**
+     * This method is responsible for creating random IDs and uploading the Photos to the FireBase Storage.
+     * The method waits to receive the imageUri, which has a reference to the image on the Database, which
+     * will be used to assign to the respective user.
+     * @param photo Receives a Drawable that is later added as a styling to the buttons.
+     * @see FirebaseStorage
+     * @see FirebaseDatabase
+     * @see Uri
+     * @see Drawable
+     */
     public void UploadFileToFireBase(Drawable photo){
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -199,17 +241,20 @@ public class DashboardFragment extends Fragment {
         final StorageReference filePath = imageRef.child("Images").child(imageUri.getLastPathSegment() + finalDate + ".jpg");
         final UploadTask uploadTask = filePath.putFile(imageUri);
 
+        //On Failure
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getContext(), "Error: " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getContext(), MainActivity.class));
             }
+            //On Successful Execution
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(getContext(), "Image Uploaded Successfully!", Toast.LENGTH_SHORT).show();
 
+                //Waits for the URL of the uploaded Image
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
@@ -218,6 +263,7 @@ public class DashboardFragment extends Fragment {
                             throw task.getException();
                         }
 
+                        //Image Reference URL
                         imageUrl = filePath.getDownloadUrl().toString();
                         return filePath.getDownloadUrl();
                     }
@@ -235,13 +281,19 @@ public class DashboardFragment extends Fragment {
         });
     }
 
+    /**
+     * This method is responsible for assigning the current user to the recently uploaded image, through URL
+     * references.
+     */
     private void LinkPhotoToUserFireBase() {
         usersRef.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    //Gathers the username of the current user
                     String username = dataSnapshot.child("username").getValue().toString();
 
+                    //Hash map, mapped to the Table structure of the database
                     HashMap map = new HashMap();
                     map.put("uid", userId);
                     map.put("date", currDate);
@@ -249,6 +301,8 @@ public class DashboardFragment extends Fragment {
                     map.put("username", username);
                     map.put("imageUrl", imageUrl);
 
+                    //Creates a field in the Database with a Random ID provided by the userId and a mixture of Date and Time for
+                    //added security and randomness
                     photosRef.child(userId + finalDate).updateChildren(map).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
@@ -263,6 +317,10 @@ public class DashboardFragment extends Fragment {
                 }
             }
 
+            /**
+             * @deprecated
+             * @param databaseError /Error
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

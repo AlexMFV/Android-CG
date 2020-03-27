@@ -1,17 +1,26 @@
 package com.example.colorpicker.ui.common;
 
+/**
+ * @author Alex Valente
+ */
 public final class Commons {
-    /*Digital Luminance*/
+    /**
+     * Digital Luminance Constants
+     */
     public static final float LUM_R = 0.2126f;
     public static final float LUM_G = 0.7152f;
     public static final float LUM_B = 0.0722f;
 
-    /*Perceived Luminance*/
+    /**
+     * Perceived Luminance Constants
+     */
     public static final float PLUM_R = 0.299f;
     public static final float PLUM_G = 0.587f;
     public static final float PLUM_B = 0.114f;
 
-    /* MAX-MIN Values */
+    /**
+     * MIN-MAX Constants
+     */
     static final int RGB_MAX = 255;
     static final int RGB_MIN = 0;
 

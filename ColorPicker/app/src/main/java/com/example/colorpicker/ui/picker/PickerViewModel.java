@@ -9,10 +9,18 @@ import com.skydoves.colorpickerview.ColorPickerView;
 
 public class PickerViewModel extends ViewModel {
 
-    //Constructor
-    public PickerViewModel() {
-    }
+    /**
+     * Constructor for the Picker View Model
+     */
+    public PickerViewModel() { }
 
+    /**
+     * Updates the colour that is shown in the button below the ColorPicker View
+     * @param colorBox Reference to the Button element
+     * @param color ColorEnvelope object contains all the necessary values for the Selected Colour
+     * @see ColorEnvelope
+     * @see android.graphics.Color
+     */
     void UpdateColorBox(Button colorBox, ColorEnvelope color) {
         colorBox.setBackgroundColor(color.getColor());
     }

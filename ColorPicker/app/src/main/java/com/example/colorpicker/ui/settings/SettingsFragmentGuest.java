@@ -14,6 +14,10 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.colorpicker.HomePage;
 import com.example.colorpicker.R;
 
+/**
+ * @author Reece Ward
+ * @author Adam Guiton
+ */
 public class SettingsFragmentGuest extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,6 +34,9 @@ public class SettingsFragmentGuest extends Fragment {
         return root;
     }
 
+    /**
+     * This method is responsible for sending the user to the HomePage where the user can Login or Register
+     */
     private void redirectMenu(){
         Intent myIntent = new Intent(SettingsFragmentGuest.this.getActivity(), HomePage.class);
         startActivity(myIntent);

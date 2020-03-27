@@ -21,6 +21,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+/**
+ * @author Alex Valente
+ * @author Rosie Murphy
+ * @author Benedita Laranjeira
+ * @author Reece Ward
+ * @author Furqan Khan
+ * @author Adam Guiton
+ */
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
@@ -33,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
         //Set the activities to fullscreen (remove the status bar)
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //Set the starting activity for the app
         setContentView(R.layout.activity_main);
 
+        //FireBase Instances
         mAuth = FirebaseAuth.getInstance();
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
@@ -49,10 +59,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    /**
+     * When the activity Starts the user is automatically redirected to the HomePage since the HomePage also serves as
+     * The StartPage, the MainActivity is only a Template.
+     */
     @Override
     protected void onStart() {
         super.onStart();
 
+        //GEt the current user instance
         FirebaseUser user = mAuth.getCurrentUser();
 
         if(user == null) {
@@ -63,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
             CheckUserExists();
     }
 
+    /**
+     * This method verifies if the user instance that is running exists in the database.
+     */
     private void CheckUserExists(){
         final String userId = mAuth.getInstance().getUid();
 

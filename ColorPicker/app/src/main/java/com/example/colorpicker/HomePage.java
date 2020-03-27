@@ -21,14 +21,26 @@ public class HomePage extends AppCompatActivity {
         mContext = getApplicationContext();
     }
 
+    /**
+     * Event to send the use to the MainActivity as a Guest User
+     * @param view Variable of type View
+     */
     public void onClickStartHandler(View view){
         startActivity(new Intent(mContext, MainActivityGuest.class));
     }
 
+    /**
+     * Event responsible for send the user as a recently Registered user
+     * @param view Variable of type View
+     */
     public void onClickRegHandler(View view){
         startActivity(new Intent(mContext, SignUp.class));
     }
 
+    /**
+     * Event responsible for send the user as a recently Logged in user
+     * @param view Variable of type View
+     */
     public void onClickHandler(View view){
         startActivity(new Intent(mContext, SignIn.class));
     }

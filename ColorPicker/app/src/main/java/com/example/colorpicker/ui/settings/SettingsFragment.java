@@ -21,6 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
+/**
+ * @author Adam Guiton
+ * @author Reece Ward
+ * @author Alex Valente
+ */
 public class SettingsFragment extends Fragment {
 
     private SettingsViewModel settingsFragment;
@@ -35,6 +40,7 @@ public class SettingsFragment extends Fragment {
         settingsFragment = ViewModelProviders.of(this).get(SettingsViewModel.class);
         View root = inflater.inflate(R.layout.settings_page, container, false);
 
+        //FireBase Instances
         mAuth = FirebaseAuth.getInstance();
 
         btnViewSchemes = root.findViewById(R.id.ViewSchemes);
