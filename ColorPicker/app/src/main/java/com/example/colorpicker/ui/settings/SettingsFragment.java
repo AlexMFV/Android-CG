@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,7 +19,7 @@ public class SettingsFragment extends Fragment {
 
     private SettingsViewModel settingsFragment;
     private Button btnLogout;
-    private Button btnSwitch;
+    private Switch btnSwitch;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class SettingsFragment extends Fragment {
                 }
 
                 }
-            
+
         });
 
         return root;
