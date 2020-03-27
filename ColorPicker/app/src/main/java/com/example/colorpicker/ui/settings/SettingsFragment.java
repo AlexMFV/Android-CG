@@ -36,9 +36,15 @@ public class SettingsFragment extends Fragment {
         btnSwitch.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if(btnSwitch.isChecked()){
+                    activity.setTheme(R.style.DarkMode);
+                }
+
+                else{
+                    setContentView(R.layout.activity_main);
+                }
 
                 }
-            }
+            
         });
 
         return root;
