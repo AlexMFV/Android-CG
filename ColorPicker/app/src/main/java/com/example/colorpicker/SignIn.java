@@ -32,7 +32,6 @@ public class SignIn extends AppCompatActivity {
     private Button btnReset;
     private int counter = 3;
 
-    //FireBase Variables
     private FirebaseAuth fbAuth;
 
 

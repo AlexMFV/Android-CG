@@ -27,6 +27,7 @@ public class SettingsFragment extends Fragment {
                 redirectMenu();
             }
         });
+
         return root;
     }
 
@@ -36,3 +37,4 @@ public class SettingsFragment extends Fragment {
         SettingsFragment.this.getActivity().finish();
     }
 }
+
