@@ -74,4 +74,5 @@
     <string name="text_Thursday">Today\'s colour is Light Yellow. This colour is known to represent insight, enlightenment and happiness.</string>
     <string name="text_Friday">Today\'s colour is Blue. This colour is known to represent tranquility, calmness and stability, often associated with the sky and sea.</string>
     <string name="text_Saturday">Today\'s colour is Violet. This colour is known to represent creativity, inspiration and ambition.</string>
+    <string name="text_RecentPosts">Recent Posts</string>
 </resources>

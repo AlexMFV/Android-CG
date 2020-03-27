@@ -192,7 +192,7 @@ public class DashboardFragment extends Fragment {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         currDate = dateFormat.format(cal.getTime());
-        dateFormat = new SimpleDateFormat("HH:mm");
+        dateFormat = new SimpleDateFormat("HH:mm:ss");
         currTime = dateFormat.format(cal.getTime());
 
         finalDate = currDate + currTime;
@@ -249,7 +249,7 @@ public class DashboardFragment extends Fragment {
                     map.put("username", username);
                     map.put("imageUrl", imageUrl);
 
-                    photosRef.child(userId).updateChildren(map).addOnCompleteListener(new OnCompleteListener() {
+                    photosRef.child(userId + finalDate).updateChildren(map).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
                             if(task.isSuccessful()){
